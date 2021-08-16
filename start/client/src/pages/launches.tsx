@@ -18,6 +18,19 @@ export const LAUNCH_TILE_DATA = gql`
   }
 `;
 
+export const GET_LAUNCHES = gql`
+  query GetLauncheList($after: String){
+    launches(after: $after){
+      cursor
+      hasMore
+      launches {
+        ...LaunchTile
+      }
+    }
+  }
+  ${LAUNCH_TILE_DATA}
+`;
+
 interface LaunchesProps extends RouteComponentProps {}
 
 const Launches: React.FC<LaunchesProps> = () => {
